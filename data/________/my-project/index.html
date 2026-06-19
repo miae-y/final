@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUESS 코리아 - 온라인 턴어라운드 포털</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+       1. LOGIN VIEW
+       ========================================================================== -->
+    <div id="loginView" class="login-container" style="background-image: url('src/assets/guess_login_bg.png');">
+        <div class="login-card">
+            <!-- Iconic Inverted GUESS Logo in SVG -->
+            <div class="brand-logo-container">
+                <svg class="logo-triangle" width="90" height="90" viewBox="0 0 100 100">
+                    <polygon points="5,10 95,10 50,88" fill="#D00D2D" stroke="#FFFFFF" stroke-width="2"/>
+                    <text x="50" y="32" font-family="'Outfit', sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">GUESS</text>
+                    <text x="50" y="42" font-family="'Outfit', sans-serif" font-size="6" font-weight="700" fill="#FFFFFF" text-anchor="middle">U.S. A.</text>
+                    <text x="50" y="62" font-family="'Outfit', sans-serif" font-size="20" font-weight="900" fill="#FFFFFF" text-anchor="middle">?</text>
+                </svg>
+            </div>
+            
+            <h2>GUESS KOREA</h2>
+            <p class="subtitle">온라인 수익성 개선 및 브랜드 재구축 포털</p>
+            
+            <div class="error-message" id="errorMessage"></div>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">사용자 이름</label>
+                    <input type="text" id="username" class="input-field" placeholder="username" required autocomplete="username">
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" class="input-field" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+                
+                <button type="submit" class="btn-primary">로그인</button>
+            </form>
+            
+            <div class="credentials-hint">
+                💡 테스트용 로그인 정보<br>
+                아이디: <code>admin</code>  |  비밀번호: <code>guess</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       2. DASHBOARD VIEW (Initially Hidden)
+       ========================================================================== -->
+    <div id="dashboardView" class="dashboard-layout" style="display: none;">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <svg width="32" height="32" viewBox="0 0 100 100">
+                    <polygon points="5,10 95,10 50,88" fill="#D00D2D" stroke="#FFFFFF" stroke-width="2"/>
+                    <text x="50" y="35" font-family="'Outfit', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">G</text>
+                    <text x="50" y="65" font-family="'Outfit', sans-serif" font-size="24" font-weight="900" fill="#FFFFFF" text-anchor="middle">?</text>
+                </svg>
+                <h1>GUESS KOREA</h1>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-target="overviewPanel">
+                    <span>📊 전략 마스터플랜</span>
+                </li>
+                <li class="menu-item" data-target="channelPanel">
+                    <span>🌐 채널 3원화 관리</span>
+                </li>
+                <li class="menu-item" data-target="productPanel">
+                    <span>🛍️ 상품 혁신 & 로드맵</span>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="logout-btn">
+                    <span>🚪 로그아웃</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard View -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-title">
+                    <h2>온라인 수익성 개선 및 브랜드 재구축 전략</h2>
+                    <p>GUESS Online Turnaround Dashboard</p>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">A</div>
+                    <div class="profile-info">
+                        <span class="name">관리자 계정</span>
+                        <span class="role">C-Level Leadership</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stat Cards -->
+            <section class="overview-grid">
+                <div class="stat-card primary">
+                    <h3>목표 정상가 판매율 개선</h3>
+                    <div class="value">+25%</div>
+                    <div class="trend">Full-Price Sell-through 기대치</div>
+                </div>
+                <div class="stat-card success">
+                    <h3>투 트랙 유통 채널</h3>
+                    <div class="value">D2C & 버티컬</div>
+                    <div class="trend">자사몰 / 무신사 / 29CM 집중</div>
+                </div>
+                <div class="stat-card warning">
+                    <h3>가격 방어 정책</h3>
+                    <div class="value">No-Sale (95%↑)</div>
+                    <div class="trend">최저가 연동 및 할인 판매 지양</div>
+                </div>
+            </section>
+
+            <!-- PANEL 1: 전략 마스터플랜 (Overview) -->
+            <div id="overviewPanel" class="content-panel active">
+                <h3 class="panel-title">전략 마스터플랜 및 핵심 문제 진단</h3>
+                
+                <div class="grid-2col" style="margin-bottom: 30px;">
+                    <div class="content-card">
+                        <h4>❌ 현황 및 핵심 문제 진단 (Context)</h4>
+                        <ul>
+                            <li><strong>채널 양극화 및 백화점 정체:</strong> 오프라인 백화점 매출이 전반적으로 감소하고, 아울렛/홈쇼핑 의존도가 높아지며 브랜드 평균 단가(ASP) 훼손.</li>
+                            <li><strong>브랜드 이미지 노후화:</strong> 저단가 대량 판매 및 할인 위주 홈쇼핑 노출로 젊은 세대에서 올드한 이미지로 전락.</li>
+                            <li><strong>버티컬 플랫폼 성장 정체:</strong> 무신사/29CM 등 힙한 편집숍 브랜드 전개 지연 및 데님 외 상품 다각화 실패.</li>
+                        </ul>
+                    </div>
+                    <div class="content-card highlight">
+                        <h4>🎯 핵심 전략 방향 (Dual-Track)</h4>
+                        <p style="font-size: 13.5px; line-height: 1.6; color: var(--slate-700); margin-bottom: 15px;">
+                            안정적인 캐시카우 매출원은 유지하면서, 수익성과 MZ 고객 확보를 위한 신규 축을 병행하는 투 트랙 가치 정상화를 구축합니다.
+                        </p>
+                        <ul>
+                            <li>안정 매출 축(Volume): 홈쇼핑, 아울렛, 종합몰 기본물 중심 운영</li>
+                            <li>브랜드 턴어라운드 축(Value): 자사몰, 패션 전문 버티컬몰 중심 고단가 고수</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="strategy-table-wrapper">
+                    <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--slate-900);">[비교 분석] 투 트랙 운영 구조</h4>
+                    <table class="strategy-table">
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th>안정 매출 축 (Volume & Cash Cow)</th>
+                                <th>브랜드 턴어라운드 축 (Value & Margin)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject">대상 채널</td>
+                                <td>홈쇼핑, 오프라인 아울렛, 종합몰 기본물</td>
+                                <td class="highlight-cell">자사몰(D2C), 패션 전문 버티컬몰 (무신사/29CM)</td>
+                            </tr>
+                            <tr>
+                                <td class="subject">운영 목적</td>
+                                <td>대중적 볼륨 유지 및 안정적 현금 흐름 확보</td>
+                                <td class="highlight-cell">MZ 신규 고객 유입, 고단가(ASP) 회복, 마진 극대화</td>
+                            </tr>
+                            <tr>
+                                <td class="subject">가격 정책</td>
+                                <td>상시 쿠폰 매칭, 이월 상품 할인 전개</td>
+                                <td class="highlight-cell">No-Sale (정상가 판매율 95% 이상 고수)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 2: 채널 3원화 관리 -->
+            <div id="channelPanel" class="content-panel">
+                <h3 class="panel-title">외부몰 및 D2C 유통 채널 3원화 전략</h3>
+                <p style="font-size: 14px; color: var(--slate-600); margin-bottom: 24px;">
+                    온라인 플랫폼 간 가격 경쟁 및 카니발라이제이션을 방지하고 가치 하락을 방어하기 위해 유통 채널을 다음과 같이 철저히 격리 운영합니다.
+                </p>
+                
+                <div class="channel-grid">
+                    <div class="channel-card focus">
+                        <h4>패션 전문 버티컬몰</h4>
+                        <div class="subtitle">무신사 / 29CM / W컨셉</div>
+                        <hr>
+                        <div class="channel-detail-group">
+                            <div class="channel-detail">
+                                <strong>주요 역할</strong>
+                                <span>젊은 세대 타깃 브랜드 이미지 리포지셔닝 전초기지</span>
+                            </div>
+                            <div class="channel-detail">
+                                <strong>상품 구성</strong>
+                                <span>'90s 아카이브 x 스트리트' 콜라보 한정판 라인 독점 전개</span>
+                            </div>
+                            <div class="channel-detail">
+                                <strong>가격 정책</strong>
+                                <span>무분별한 쿠폰 차단, No-Sale 정상가 원칙 고수</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="channel-card">
+                        <h4>백화점 종합몰</h4>
+                        <div class="subtitle">SSG / 롯데온 / 현대H몰 등</div>
+                        <hr>
+                        <div class="channel-detail-group">
+                            <div class="channel-detail">
+                                <strong>주요 역할</strong>
+                                <span>오프라인 백화점 리테일의 프리미엄 가치 보완 및 매칭</span>
+                            </div>
+                            <div class="channel-detail">
+                                <strong>상품 구성</strong>
+                                <span>고단가 프리미엄 라인(Marciano, Luxe 데님) 위주</span>
+                            </div>
+                            <div class="channel-detail">
+                                <strong>가격 정책</strong>
+                                <span>최저가 경쟁을 지양하고 오프라인 매장 리테일 가격과 연동</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="channel-card">
+                        <h4>오픈마켓 & 소셜</h4>
+                        <div class="subtitle">쿠팡 / 네이버 스마트스토어 등</div>
+                        <hr>
+                        <div class="channel-detail-group">
+                            <div class="channel-detail">
+                                <strong>주요 역할</strong>
+                                <span>코어 기본물 및 이월 재고 신속한 순환과 소진</span>
+                            </div>
+                            <div class="channel-detail">
+                                <strong>상품 구성</strong>
+                                <span>베이직 오버핏 로고 티셔츠, 기본물, 이월 재고 제한 노출</span>
+                            </div>
+                            <div class="channel-detail">
+                                <strong>가격 정책</strong>
+                                <span>신규 콜라보/데님 노출 차단으로 검색 가격 비교 오염 차단</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 3: 상품 혁신 & 로드맵 -->
+            <div id="productPanel" class="content-panel">
+                <h3 class="panel-title">상품 콘텐츠 혁신 및 실행 로드맵</h3>
+                
+                <div class="grid-2col" style="margin-bottom: 30px;">
+                    <div class="content-card">
+                        <h4>🤝 '90s 레트로 아카이브' x '힙 스트리트' 협업</h4>
+                        <p style="font-size: 13.5px; line-height: 1.6; color: var(--slate-700);">
+                            게스 고유 자산인 80-90년대 전성기 아카이브(삼각 로고 디테일, 특유의 빈티지 레트로 워싱)를 현 트렌드에 걸맞게 재복각하고, 젊은 층이 열광하는 힙한 스트리트 디자이너 브랜드의 고감도 스타일링을 결합하여 한정판 캡슐 라인으로 론칭합니다. 단순 할인이 아닌 '소장 가치'를 통한 신규 가입 유도를 견인합니다.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h4>👖 카테고리 리포지셔닝 (하의 → 상의/잡화 확대)</h4>
+                        <p style="font-size: 13.5px; line-height: 1.6; color: var(--slate-700);">
+                            대표 캐시카우 상품군인 '데님 하의'의 정통 핏과 독보적인 실루엣 보정 기술 등 생산 경쟁력은 완벽하게 유지하되, 진입 장벽이 낮고 트렌드가 빠른 상의(그래픽 티셔츠, 크롭 탑, Y2K 니트웨어)와 잡화(볼캡, 미니백 등)를 쇄신하여 젊은 층의 크로스 코디 세트 판매율을 확대합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--slate-900);">[단계별 실행 타임라인]</h4>
+                <div class="roadmap-timeline">
+                    <div class="roadmap-card">
+                        <span class="roadmap-step">STEP 1</span>
+                        <h4>준비 및 설계 단계 (Phase 1)</h4>
+                        <p>스트리트 브랜드 콜라보레이션 파트너십 구축 및 외부몰 유통 카테고리별 상품 맵핑 경계 구체화</p>
+                    </div>
+                    <div class="roadmap-card highlight">
+                        <span class="roadmap-step">STEP 2</span>
+                        <h4>런칭 및 전개 단계 (Phase 2)</h4>
+                        <p>패션 버티컬몰 및 D2C 자사몰 중심으로 'Originals 캡슐' 한정판 단독 릴리즈 및 No-Sale 디렉팅 안착</p>
+                    </div>
+                    <div class="roadmap-card">
+                        <span class="roadmap-step">STEP 3</span>
+                        <h4>안착 및 시너지 단계 (Phase 3)</h4>
+                        <p>고단가 데이터 기반 정가 판매 안착 및 온라인 브랜딩 쇄신 성과를 오프라인 백화점 매장까지 연동 (O4O 시너지 극대화)</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="src/app.js"></script>
+</body>
+</html>

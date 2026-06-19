@@ -1,0 +1,4 @@
+이 폴더에는 FY26 매출 실적 raw data(Excel) 및 FY27 매출 목표 시뮬레이션 시트 등을 보관합니다.
+대표 파일 예시:
+- FY26_sales_by_channel.xlsx
+- FY27_budget_simulation.xlsx

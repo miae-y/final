@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Tap Blast</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="title">Tap Blast</div>
+      <div class="control-row">
+        <label class="difficulty-label">
+          난이도
+          <select id="difficulty" class="difficulty-select">
+            <option value="easy">쉬움</option>
+            <option value="normal" selected>보통</option>
+            <option value="hard">어려움</option>
+          </select>
+        </label>
+        <button id="startButton" class="start-button">게임 시작</button>
+      </div>
+    </header>
+
+    <div class="score-bar">
+      <div>점수: <span id="score">0</span></div>
+      <div>콤보: <span id="combo">0</span></div>
+      <div>목숨: <span id="lives">3</span></div>
+      <div>레벨: <span id="level">1</span></div>
+      <div>활성 캐릭터: <span id="activeCount">0</span></div>
+    </div>
+
+    <div id="gameArea" class="game-area">
+      <canvas id="gameCanvas"></canvas>
+      <div id="message" class="message">시작 버튼을 눌러 탭 게임을 시작하세요!</div>
+    </div>
+
+    <div class="tips">타겟을 빠르게 터치하면 점수가 올라갑니다. 계속 연속 적중을 유지해 보세요!</div>
+
+    <div class="leaderboard-panel">
+      <div class="leaderboard-header">점수 랭킹</div>
+      <div class="leaderboard-info">게임 종료 후 최고 점수가 자동 저장됩니다.</div>
+      <ul id="leaderboardList" class="leaderboard-list"></ul>
+      <button id="resetRanking" class="small-button">랭킹 초기화</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

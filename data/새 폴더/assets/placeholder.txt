@@ -1,0 +1,5 @@
+이 폴더에는 슬라이드 장표에 삽입할 이미지, 차트 캡처본, 로고 및 아이콘 리소스를 저장합니다.
+대표 파일 예시:
+- guess_logo.png
+- channel_sales_mix_chart.png
+- market_share_graph.png

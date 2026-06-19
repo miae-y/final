@@ -1,0 +1,17 @@
+{
+  "name": "guess-korea-online-turnaround-portal",
+  "version": "1.0.0",
+  "description": "GUESS Korea Online Turnaround Management Portal",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'To run the application, open index.html in a web browser.'"
+  },
+  "keywords": [
+    "guess",
+    "portal",
+    "turnaround",
+    "dashboard"
+  ],
+  "author": "Antigravity",
+  "license": "ISC"
+}
